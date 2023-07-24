@@ -36,8 +36,7 @@ class Rectangle(Shape):
         print("Rectangular coordinates address: {}".format(address))
 
     def clone(self) -> Shape:
-        coordinates = copy.deepcopy(self._coordinates)
-        return Rectangle(coordinates)
+        return copy.deepcopy(self)
 
 
 class Square(Shape):
@@ -53,7 +52,6 @@ class Square(Shape):
     
     @side.setter
     def side(self, side):
-        print("Setting side")
         self._side = side
 
     def address(self):
@@ -61,8 +59,7 @@ class Square(Shape):
         print("Square side address: {}".format(address))
 
     def clone(self) -> Shape:
-        side = copy.deepcopy(self._side)
-        return Square(side)
+        return copy.deepcopy(self)
 
 
 def main():
@@ -77,11 +74,12 @@ def main():
     rectangle.address()
     print("Creating a clone of the rectangle")
     rectangle_clone = rectangle.clone()
+    print("The coordinates of the cloned rectangle are {}".format(rectangle_clone.coordinates))
     rectangle_clone.address()
     print("Setting the coordinates of the clone to {}".format(coordinates_two))
     rectangle_clone.coordinates = coordinates_two
-    print("The coordinates of the original rectangle are {}".format(coordinates_one))
-    print("The coordinates of the clone are {}".format(coordinates_two))
+    print("The coordinates of the original rectangle are {}".format(rectangle.coordinates))
+    print("The coordinates of the clone are {}".format(rectangle_clone.coordinates))
 
     side_one = 1
     side_two = 2
@@ -90,11 +88,12 @@ def main():
     square.address()
     print("Creating a clone of the square")
     square_clone = square.clone()
+    print("The side of the cloned square is {}".format(square_clone.side))
     square_clone.address()
     print("Setting the side of the clone to {}".format(side_two))
     square_clone.side = side_two
-    print("The side of the original square is {}".format(side_one))
-    print("The side of the clone is {}".format(side_two))
+    print("The side of the original square is {}".format(square.side))
+    print("The side of the clone is {}".format(square_clone.side))
 
 if __name__ == "__main__":
     main()
